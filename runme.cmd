@@ -1,7 +1,7 @@
 @ echo off
 :: 1. Start minikube (Docker is default - I use VMware, virtualbox is default)
 echo "Starting minikube..."
-echo " "
+echo
 minikube start --driver=vmware
 :: 2. Start NFS Server in kube-system
 echo "Starting Local NFS server..."
@@ -14,7 +14,9 @@ helm repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/cs
 :: 4. Install csi driver for NFS storage
 echo "Install Helm chart for csi-driver-nfs..."
 echo " "
-helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --version v3.1.0
+helm repo update
+helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system
+:: helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --version v3.1.0
 :: 5. Add StorageClass to dynamically create Persistent Volumes
 echo "Adding StorageClass for persistent volume..."
 echo " "
