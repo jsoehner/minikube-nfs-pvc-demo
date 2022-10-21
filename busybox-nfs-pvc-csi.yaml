@@ -22,6 +22,13 @@ spec:
         volumeMounts:
           - name: nfs
             mountPath: "/mnt"
+        resources:
+          requests:
+            cpu: 25m
+            memory: 64Mi
+          limits:
+            cpu: 410m
+            memory: 512Mi
       volumes:
       - name: nfs
         persistentVolumeClaim:
